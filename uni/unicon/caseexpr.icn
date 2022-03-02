@@ -1,0 +1,5 @@
+procedure caseexpr()
+	out := &output
+	write(out, "\nHello\n")
+	iwrite(out)
+end

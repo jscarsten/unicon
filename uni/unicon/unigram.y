@@ -259,10 +259,17 @@ procedure Progend(x1)
      iconc_prep_parse_tree(&null, x1)
      }
 
+  ####################
+  # case expression optimization 
+  # goes here
+  ####################
+
+  caseexpr()
+
   #
   # generate output
   #
-#  iwrite("Generating code:")
+   iwrite("Generating code:")
    yyprint(x1)
    write(yyout)
 

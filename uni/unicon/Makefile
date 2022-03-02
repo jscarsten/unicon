@@ -3,12 +3,12 @@ include $(BASE)/Makedefs.uni
 
 export PATH:=$(BIN):$(PATH)
 
-U= unicon.u unigram.u unilex.u tree.u preproce.u idol.u unix.u tokens.u yyerror.u main.u cfy.u ca.u
+U= unicon.u unigram.u unilex.u tree.u preproce.u idol.u unix.u tokens.u yyerror.u main.u cfy.u ca.u caseexpr.u
 
 # Don't delete unigram.u and idol.u, needed for bootstrapping
 UDEL= unicon.u unilex.u tree.u preproce.u unix.u tokens.u yyerror.u main.u cfy.u ca.u
 
-UCFILES= unicon.icn unigram.icn unilex.icn tree.icn preproce.icn idol.u unix.icn tokens.icn yyerror.icn main.icn cfy.icn ca.icn
+UCFILES= unicon.icn unigram.icn unilex.icn tree.icn preproce.icn idol.u unix.icn tokens.icn yyerror.icn main.icn cfy.icn ca.icn caseexpr.icn
 
 # Files from this dir that (for now) we copy into lib/ for use by external
 # programs.  Long term, need to reconcile with or replace by stuff in parser/
@@ -56,18 +56,21 @@ cfy.u : cfy.icn
 ca.u : ca.icn
 	$(ICONT) $(UFLAGS) -c ca
 
+caseexpr.u : caseexpr.icn
+	$(ICONT) $(UFLAGS) -c caseexpr
+
 # Commented out to avoid bootstrap problem.
 # Uncomment if you modify unigram.y/unigram.icn
-#unigram.u: unigram.icn
-#	$(ICONT) -c unigram
+unigram.u: unigram.icn
+	$(ICONT) -c unigram
 
 # build iyacc, and uncomment these lines, if you change the language grammar (or unigram.y)
-#unigram.icn : unigram.y ytab_h.icn
-#	$(IYACC) -i unigram.y
+unigram.icn : unigram.y ytab_h.icn
+	$(IYACC) -i unigram.y
 
-#ytab_h.icn: unigram.y
-#	$(IYACC) -i -d unigram.y
-#	mv unigram_tab.icn ytab_h.icn
+ytab_h.icn: unigram.y
+	$(IYACC) -i -d unigram.y
+	mv unigram_tab.icn ytab_h.icn
 
 # these lines were used when Idol was involved in the build process
 #unigram.icn : unigram.y ytab_h.icn
