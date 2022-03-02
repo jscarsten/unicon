@@ -264,12 +264,12 @@ procedure Progend(x1)
   # goes here
   ####################
 
-  caseexpr()
+  caseexpr(x1)
 
   #
   # generate output
   #
-   iwrite("Generating code:")
+  #iwrite("Generating code:")
    yyprint(x1)
    write(yyout)
 

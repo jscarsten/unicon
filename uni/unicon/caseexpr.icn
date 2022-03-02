@@ -1,5 +1,14 @@
-procedure caseexpr()
-	out := &output
-	write(out, "\nHello\n")
-	iwrite(out)
+procedure caseexpr(root)
+	write("\n------------------------------------")
+	write("caseexpr.icn output :")
+
+	write(type(root))
+
+
+
+
+
+
+
+	write("------------------------------------")
 end
