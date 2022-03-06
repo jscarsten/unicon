@@ -1,14 +1,19 @@
+procedure printnode(n)
+	write("node type: " || type(n))
+	write("node label: " || n.label)
+end
+
 procedure caseexpr(root)
 	write("\n------------------------------------")
-	write("caseexpr.icn output :")
+	write("caseexpr.icn output :\n")
 
-	write(type(root))
-
-
-
-
-
-
+	node1 := root
+	
+	printnode(node1)
+	if(type(node1) == "treenode") then {
+		every child := !node1.children do caseexpr(child)
+	}
 
 	write("------------------------------------")
 end
+
