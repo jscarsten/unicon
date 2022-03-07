@@ -5,20 +5,35 @@ end
 
 procedure caseexpr(root)
 	write("\n------------------------------------")
-	write("caseexpr.icn output :\n")
+	write("current frame :\n")
 
 	node := root
-	
+
+	if /node then {write("node type: null") ; fail}
+
 	case type(node) of{
+		# internal node
 		"treenode" : {
-			every child := !node.children do caseexpr(child)
+			if node.label == "Case" then {
+				write("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+				write("CASE EXPRESSION FOUND")
+				every casechild := !node.children do {
+					if type(casechild) == "treenode" & casechild.label == "cclause1" then
+						write(casechild.children[1].s)
+				}
+				write("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+			}
 			printnode(node)
+			every child := !node.children do caseexpr(child)
+			
 		}
-		"null" : fail
-		"declaration__state" : fail
-		"Class__state" | "argList__state" : fail
+
+		# leaf node
+		"integer" : write("integer")
+		"string" : write("string")
+		"token" : write("token")
+
 	}
 
-	write("------------------------------------")
 end
 
