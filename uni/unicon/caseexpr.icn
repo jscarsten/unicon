@@ -7,11 +7,16 @@ procedure caseexpr(root)
 	write("\n------------------------------------")
 	write("caseexpr.icn output :\n")
 
-	node1 := root
+	node := root
 	
-	printnode(node1)
-	if(type(node1) == "treenode") then {
-		every child := !node1.children do caseexpr(child)
+	case type(node) of{
+		"treenode" : {
+			every child := !node.children do caseexpr(child)
+			printnode(node)
+		}
+		"null" : fail
+		"declaration__state" : fail
+		"Class__state" | "argList__state" : fail
 	}
 
 	write("------------------------------------")
