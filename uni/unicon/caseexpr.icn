@@ -3,11 +3,46 @@ procedure printnode(n)
 	write("node label: " || n.label)
 end
 
+
+procedure grab_cases(caselist)
+	static casevalues, t
+	initial {
+		casevalues := [] 
+		t := caselist.children[3].children[1].tok # get the type of 1 token
+		t = 258 | t = 260 | fail # assert t is an integer or string
+	}
+
+	if caselist.label == "Caselist" then {
+		next_caselist := caselist.children[1]
+		grab_cases(next_caselist)
+
+		casetype := caselist.children[3].children[1].tok
+
+		#confirm every type is the same as t
+		if casetype ~= t then {
+			write("failed") 
+			t := 10000 #number not assigned to a token macro, ensures that all recursive calls fail
+		 	fail
+		}
+
+		put(casevalues, caselist.children[3].children[1].s)
+
+	} else if caselist.label == "cclause1" then { # last element
+		put(casevalues, caselist.children[1].s)
+	}
+
+	# returns an empty list if the cases are not all the same type
+	return casevalues
+end
+
+
+
 procedure caseexpr(root)
 	write("\n------------------------------------")
 	write("current frame :\n")
 
 	node := root
+	cases := []
 
 	if /node then {write("node type: null") ; fail}
 
@@ -17,23 +52,20 @@ procedure caseexpr(root)
 			if node.label == "Case" then {
 				write("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 				write("CASE EXPRESSION FOUND")
-				every casechild := !node.children do {
-					if type(casechild) == "treenode" & casechild.label == "cclause1" then
-						write(casechild.children[1].s)
-				}
+				caselist :=  node.children[5] # get caselist
+				cases := grab_cases(caselist)
+				write(*cases)
+				every a := !cases do write(a)
+
 				write("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 			}
 			printnode(node)
 			every child := !node.children do caseexpr(child)
 			
 		}
-
-		# leaf node
-		"integer" : write("integer")
-		"string" : write("string")
-		"token" : write("token")
-
 	}
 
 end
+
+
 
