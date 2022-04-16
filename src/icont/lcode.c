@@ -171,6 +171,7 @@ void gencode()
          case Op_Push1:
          case Op_Pushn1:
          case Op_Sdup:
+         case Op_Test:
             newline();
             lemit(op, name);
             break;

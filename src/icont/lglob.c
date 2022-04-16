@@ -32,7 +32,7 @@ int readglob(struct lfile *lf)
    char *name;
    struct gentry *gp;
 
-   if (getopc(&name) != Op_Version)
+   if (getopc(&name) != Op_Version) 
       quitf("ucode file %s has no version identification",inname);
    id = getid();		/* get version number of ucode */
    newline();

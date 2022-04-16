@@ -19,12 +19,12 @@
 #ifdef UNICON_VERSION
    #define VersionNumber UNICON_VERSION
 #else
-   #define VersionNumber "13.2"
+   #define VersionNumber "13.3"
 #endif
 #ifdef UNICON_VERSION_DATE
    #define VersionDate UNICON_VERSION_DATE
 #else
-   #define VersionDate "October 15, 2020"
+   #define VersionDate "April 10, 2022"
 #endif
 
 /*
@@ -32,7 +32,7 @@
  *  and rtt.
  */
 
-#define DVersion "12.1.00"
+#define DVersion "12.1.01"
 
 #if COMPILER
 
@@ -53,7 +53,7 @@
     * and icode is compatible with the run-time system.
     */
    
-   #define UVersion "U12.1.00"
+   #define UVersion "U12.1.01"
    
        #ifdef FieldTableCompression
 
@@ -98,4 +98,4 @@
 /*
  * Version number for event monitoring.
  */
-#define Eversion "12.0.00"
+#define Eversion "12.0.01"

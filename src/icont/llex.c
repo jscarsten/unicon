@@ -25,7 +25,6 @@ int getopc(char **id)
    register int test;
    word indx;
    int low, high, cmp;
-
    indx = getstr();
    if (indx == -1)
       return EOF;

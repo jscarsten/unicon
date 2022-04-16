@@ -518,7 +518,7 @@ int interp_x(int fsig,dptr cargp)
  */
 
    for (;;) {
-
+      
 #ifdef SoftThreads
   if (curtstate->sthrd_size>0){
      if (curtstate->c->sthrd_tick-- <= 10){
@@ -710,6 +710,7 @@ Deliberate Syntax Error
 	}
 #endif					/* Concurrent */
 
+//fprintf(stdout,"LastOp = %d\n",lastop);
       switch ((int)lastop) {		/*
 				 * Switch on opcode.  The cases are
 				 * organized roughly by functionality
@@ -1807,6 +1808,10 @@ Pret_uw:
 
 	    break;
 	    }
+
+       case Op_Test:
+         printf("hello\n");
+         break;
 
 				/* ---Failures--- */
 

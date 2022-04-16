@@ -158,3 +158,5 @@
 #define Op_Synt         114             /* syntax code used by the linker */
 #define Op_Uid          115             /* Universal Identifier for .u files */
 /* Op_EInit is 116 for now. */
+
+#define Op_Test         121

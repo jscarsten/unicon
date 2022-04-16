@@ -114,6 +114,7 @@ struct opentry optable[] = {
    "synt",      Op_Synt,
    "tabmat",	Op_Tabmat,
    "tally",	Op_Tally,
+   "test", Op_Test,
    "toby",	Op_Toby,
    "trace",	Op_Trace,
    "uid",	Op_Uid,

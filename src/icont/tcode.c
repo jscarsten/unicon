@@ -179,6 +179,7 @@ register nodeptr t;
 	 traverse(Tree0(t));		/* evaluate control expression */
 	 loopsp->markcount--;
 	 emit("eret");
+	 emit("test"); /* test instruction */
 	 traverse(Tree1(t));		/* do rest of case (CLIST) */
 	 if (casesp->deftree != NULL) { /* evaluate default clause */
 	    emit("pop");
